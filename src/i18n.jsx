@@ -1,0 +1,396 @@
+import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Celler — bilingual copy. English primary, Dutch second. Owner can edit freely.
+// ─────────────────────────────────────────────────────────────────────────────
+export const translations = {
+  en: {
+    nav: {
+      about: 'Story',
+      wine: 'Wines',
+      shop: 'Shop',
+      events: 'Events',
+      reviews: 'Reviews',
+      visit: 'Visit',
+      shopCta: 'Shop wine',
+    },
+    hero: {
+      kicker: 'Bottle shop · Antwerp',
+      sister: 'the little sister of Tannin',
+      promise:
+        'Antwerp’s neighbourhood bottle shop. Hidden, affordable gems — hand-picked, with real knowledge and zero snobbery.',
+      ctaShop: 'Shop wine',
+      ctaVisit: 'Visit us',
+      scroll: 'Scroll down',
+    },
+    about: {
+      tag: 'Our story',
+      title: 'Good wine, for everyone',
+      lead: 'Celler comes from Tawat — a Thai sommelier who fell for wine through his father-in-law, then trained and worked his way through hospitality. Same hands, new shop.',
+      body1:
+        "Tawat is also the owner of Tannin, the wine bar just around the corner that's been thriving since the day it opened. Celler is its little sister: after years of pouring for guests, he wanted a place where you could simply take the good stuff home — a warm little bottle shop for organic, natural and biodynamic wines from small growers and lesser-known regions.",
+      body2:
+        "Never tried natural wine? Perfect. Know your terroir inside out? Also perfect. Tell us what you like and your budget, and we'll hand you something you'll love. Real knowledge, zero snobbery.",
+      photoCaption: 'Tawat · founder & sommelier',
+      philosophyTitle: 'What we believe',
+      values: [
+        { t: 'For everyone', d: 'Curious beginner or seasoned drinker — same warm welcome, no jargon test.' },
+        { t: 'Small growers', d: 'Organic, natural & biodynamic from people who farm with real care.' },
+        { t: 'Honest gems', d: 'Lesser-known regions, fair prices, a story in every bottle.' },
+      ],
+    },
+    wine: {
+      tag: 'On the shelf',
+      title: 'Hidden & affordable gems',
+      lead: "A rotating, hand-picked selection of organic, natural and biodynamic bottles. Here's a taste of what's on the shelf right now.",
+      priceLabel: 'Bottle',
+      note: "The shelf changes all the time. Pop in and we'll point you to something good.",
+    },
+    events: {
+      tag: 'Events & parties',
+      title: 'Throw your party here',
+      lead: "Birthdays, team nights, tastings or just-because get-togethers — book the shop and we'll take care of the wine.",
+      items: [
+        { t: 'Private parties', d: 'Take over Celler for the evening. Your crowd, our bottles, zero stress.' },
+        { t: 'Guided tastings', d: 'A relaxed trip through natural wine — fun first, jargon never.' },
+        { t: 'Team building', d: "Bring the colleagues. We'll pour, you'll bond over something good." },
+      ],
+      cta: 'Book your event',
+    },
+    booking: {
+      title: 'Book your event',
+      subtitle: "Pick a date and time, tell us about your party, and we'll confirm by email.",
+      dateLabel: 'Choose a date',
+      timeLabel: 'Pick a time',
+      peopleLabel: 'Number of people',
+      typeLabel: 'Type of event',
+      types: ['Birthday', 'Private party', 'Wine tasting', 'Team building', 'Something else'],
+      nameLabel: 'Your name',
+      emailLabel: 'Email',
+      phoneLabel: 'Phone (optional)',
+      notesLabel: 'Anything we should know? (optional)',
+      notesPlaceholder: 'Allergies, theme, timing…',
+      submit: 'Review booking',
+      cancel: 'Cancel',
+      close: 'Close',
+      required: 'Please add your name and email.',
+      selectDateTime: 'Please choose a date and a time.',
+      decrease: 'Fewer people',
+      increase: 'More people',
+      bigGroup: "Bigger group? Mention it in the notes and we'll sort it out.",
+      successTitle: 'Almost there!',
+      successBody: "Here's your booking request. Hit send and we'll confirm by email.",
+      send: 'Send request',
+      partyTag: "Let's plan something fun 🎉",
+      sentTitle: 'Request sent! 🎉',
+      sentBody: "Thanks! We've got your booking and we'll confirm by email very soon. Let the countdown begin. 🥳",
+      sentClose: 'Done',
+      edit: 'Edit details',
+      prevMonth: 'Previous month',
+      nextMonth: 'Next month',
+      weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      months: [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December',
+      ],
+      summary: {
+        type: 'Event',
+        date: 'Date',
+        time: 'Time',
+        people: 'People',
+        name: 'Name',
+        email: 'Email',
+        phone: 'Phone',
+        notes: 'Notes',
+      },
+    },
+    shop: {
+      tag: 'The shop',
+      title: 'Take it home, your way',
+      lead: 'Order your favourites to pick up in store or have them delivered to your door.',
+      pickup: 'Pick up in store',
+      pickupD: 'Order online and swing by the shop to collect your bottles.',
+      delivery: 'Delivered to you',
+      deliveryD: 'We deliver around Antwerp. Good wine, right to your door.',
+      popular: 'Popular bottles',
+      add: 'Add',
+      cta: 'Browse the full shop',
+      legal: '18+ only · Please enjoy responsibly.',
+      modalTitle: 'The full shop',
+      modalSubtitle: 'Search our shelf, filter by style and build your order.',
+      searchPlaceholder: 'Search by name, region or grape…',
+      sortLabel: 'Sort',
+      sortFeatured: 'Featured',
+      sortPriceUp: 'Price: low to high',
+      sortPriceDown: 'Price: high to low',
+      results: 'bottles',
+      empty: 'No bottles match your search. Try another grape or region.',
+      basketTitle: 'Your basket',
+      total: 'Total',
+      order: 'Order by email',
+      close: 'Close shop',
+      types: { all: 'All', sparkling: 'Sparkling', orange: 'Orange', rose: 'Rosé', red: 'Red', white: 'White' },
+    },
+    ageGate: {
+      title: 'Are you 18 or older?',
+      body: "You need to be of legal drinking age to enter our wine shop. In Belgium that's 18+.",
+      yes: "Yes, I'm 18 or older",
+      no: 'No, take me back',
+      responsibly: 'Enjoy responsibly.',
+    },
+    reviews: {
+      tag: 'Kind words',
+      title: 'What people say',
+      lead: 'A few words from regulars and first-timers. (Swap these for your real Google reviews later.)',
+      items: [
+        {
+          name: 'Lotte D.',
+          rating: 5,
+          text: "Walked in clueless, walked out with three bottles I now can't live without. Zero snobbery, all warmth.",
+        },
+        {
+          name: 'Karim B.',
+          rating: 5,
+          text: 'Tawat picked a natural wine for my budget and it blew me away. My go-to shop in Antwerp now.',
+        },
+        {
+          name: 'Sofie & Jonas',
+          rating: 5,
+          text: 'Booked a private tasting for our anniversary — relaxed, fun and genuinely delicious. Highly recommend.',
+        },
+      ],
+    },
+    visit: {
+      tag: 'Visit / Contact',
+      title: 'Come find us',
+      addressTitle: 'Address',
+      address: ['Volkstraat 45', '2000 Antwerpen', 'Belgium'],
+      hoursTitle: 'Opening hours',
+      hours: [
+        { d: 'Mon – Wed', h: 'Closed' },
+        { d: 'Thu – Sun', h: '14:00 – 19:00' },
+      ],
+      contactTitle: 'Get in touch',
+      phoneLabel: 'Phone',
+      emailLabel: 'Email',
+      instaLabel: 'Instagram',
+      mapTitle: 'Map showing Celler at Volkstraat 45, Antwerp',
+    },
+    footer: {
+      tagline: 'Neighbourhood wine shop · Antwerp',
+      sister: 'From the people behind Tannin.',
+      age: '18+ · Enjoy responsibly. Drinking alcohol can damage your health — consume in moderation.',
+      rights: '© 2026 Celler. Made with love and good bottles.',
+      back: 'Back to top',
+    },
+  },
+
+  nl: {
+    nav: {
+      about: 'Verhaal',
+      wine: 'Wijnen',
+      shop: 'Shop',
+      events: 'Events',
+      reviews: 'Reviews',
+      visit: 'Bezoek',
+      shopCta: 'Wijn shoppen',
+    },
+    hero: {
+      kicker: 'Bottelshop · Antwerpen',
+      sister: 'het kleine zusje van Tannin',
+      promise:
+        'De buurtbottelshop van Antwerpen. Verborgen, betaalbare pareltjes — met de hand gekozen, met echte kennis en nul snobisme.',
+      ctaShop: 'Wijn shoppen',
+      ctaVisit: 'Bezoek ons',
+      scroll: 'Scroll naar beneden',
+    },
+    about: {
+      tag: 'Ons verhaal',
+      title: 'Goede wijn, voor iedereen',
+      lead: 'Celler komt van Tawat — een Thaise sommelier die voor wijn viel dankzij zijn schoonvader, en zich daarna een weg baande door de horeca. Dezelfde handen, een nieuwe shop.',
+      body1:
+        'Tawat is ook de eigenaar van Tannin, de wijnbar om de hoek die floreert sinds de dag dat ze opende. Celler is het kleine zusje: na jaren schenken voor gasten wilde hij een plek waar je het goede spul gewoon mee naar huis kon nemen — een warme kleine bottelshop voor bio-, natuurlijke en biodynamische wijnen van kleine wijnboeren en minder bekende regio’s.',
+      body2:
+        'Nooit natuurlijke wijn geproefd? Perfect. Ken je je terroir door en door? Ook perfect. Vertel ons wat je lekker vindt en je budget, en wij geven je iets waar je van gaat houden. Echte kennis, nul snobisme.',
+      photoCaption: 'Tawat · oprichter & sommelier',
+      philosophyTitle: 'Waar we in geloven',
+      values: [
+        { t: 'Voor iedereen', d: 'Nieuwsgierige beginner of doorwinterde drinker — zelfde warme welkom, geen jargon-test.' },
+        { t: 'Kleine wijnboeren', d: 'Bio, natuurlijk & biodynamisch van mensen die met echte zorg boeren.' },
+        { t: 'Eerlijke pareltjes', d: "Minder bekende regio's, eerlijke prijzen, een verhaal in elke fles." },
+      ],
+    },
+    wine: {
+      tag: 'In de rekken',
+      title: 'Verborgen & betaalbare pareltjes',
+      lead: 'Een wisselende, met de hand gekozen selectie bio-, natuurlijke en biodynamische flessen. Dit is een voorproefje van wat er nu in de rekken staat.',
+      priceLabel: 'Fles',
+      note: 'De rekken veranderen voortdurend. Kom langs en wij wijzen je iets goeds aan.',
+    },
+    events: {
+      tag: 'Events & feesten',
+      title: 'Vier je feest hier',
+      lead: 'Verjaardagen, teamavonden, proeverijen of zomaar samenkomen — boek de shop en wij zorgen voor de wijn.',
+      items: [
+        { t: 'Privéfeesten', d: 'Neem Celler een avond over. Jouw volk, onze flessen, nul stress.' },
+        { t: 'Begeleide proeverijen', d: 'Een relaxte reis door natuurlijke wijn — eerst plezier, nooit jargon.' },
+        { t: 'Teambuilding', d: "Breng de collega's mee. Wij schenken, jullie bonden over iets goeds." },
+      ],
+      cta: 'Boek je event',
+    },
+    booking: {
+      title: 'Boek je event',
+      subtitle: 'Kies een datum en tijd, vertel ons over je feest, en wij bevestigen per e-mail.',
+      dateLabel: 'Kies een datum',
+      timeLabel: 'Kies een tijd',
+      peopleLabel: 'Aantal personen',
+      typeLabel: 'Soort event',
+      types: ['Verjaardag', 'Privéfeest', 'Wijnproeverij', 'Teambuilding', 'Iets anders'],
+      nameLabel: 'Je naam',
+      emailLabel: 'E-mail',
+      phoneLabel: 'Telefoon (optioneel)',
+      notesLabel: 'Iets dat we moeten weten? (optioneel)',
+      notesPlaceholder: 'Allergieën, thema, timing…',
+      submit: 'Boeking nakijken',
+      cancel: 'Annuleren',
+      close: 'Sluiten',
+      required: 'Vul je naam en e-mail in.',
+      selectDateTime: 'Kies een datum en een tijd.',
+      decrease: 'Minder personen',
+      increase: 'Meer personen',
+      bigGroup: 'Grotere groep? Vermeld het bij de notities en wij regelen het.',
+      successTitle: 'Bijna klaar!',
+      successBody: 'Dit is je boekingsaanvraag. Klik op verzenden en wij bevestigen per e-mail.',
+      send: 'Aanvraag verzenden',
+      partyTag: 'Laten we iets leuks plannen 🎉',
+      sentTitle: 'Aanvraag verzonden! 🎉',
+      sentBody: 'Bedankt! We hebben je boeking en bevestigen heel snel per e-mail. Het aftellen mag beginnen. 🥳',
+      sentClose: 'Klaar',
+      edit: 'Gegevens aanpassen',
+      prevMonth: 'Vorige maand',
+      nextMonth: 'Volgende maand',
+      weekdays: ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'],
+      months: [
+        'januari', 'februari', 'maart', 'april', 'mei', 'juni',
+        'juli', 'augustus', 'september', 'oktober', 'november', 'december',
+      ],
+      summary: {
+        type: 'Event',
+        date: 'Datum',
+        time: 'Tijd',
+        people: 'Personen',
+        name: 'Naam',
+        email: 'E-mail',
+        phone: 'Telefoon',
+        notes: 'Notities',
+      },
+    },
+    shop: {
+      tag: 'De shop',
+      title: 'Neem het mee, op jouw manier',
+      lead: 'Bestel je favorieten om af te halen in de winkel of laat ze thuis leveren.',
+      pickup: 'Afhalen in de winkel',
+      pickupD: 'Bestel online en kom langs in de shop om je flessen op te halen.',
+      delivery: 'Bij jou geleverd',
+      deliveryD: 'Wij leveren in en rond Antwerpen. Goede wijn, tot aan je deur.',
+      popular: 'Populaire flessen',
+      add: 'Toevoegen',
+      cta: 'Bekijk de volledige shop',
+      legal: 'Enkel 18+ · Geniet met mate.',
+      modalTitle: 'De volledige shop',
+      modalSubtitle: 'Doorzoek onze rekken, filter op stijl en stel je bestelling samen.',
+      searchPlaceholder: 'Zoek op naam, regio of druif…',
+      sortLabel: 'Sorteer',
+      sortFeatured: 'Aanbevolen',
+      sortPriceUp: 'Prijs: laag naar hoog',
+      sortPriceDown: 'Prijs: hoog naar laag',
+      results: 'flessen',
+      empty: 'Geen flessen gevonden. Probeer een andere druif of regio.',
+      basketTitle: 'Je mandje',
+      total: 'Totaal',
+      order: 'Bestel per e-mail',
+      close: 'Shop sluiten',
+      types: { all: 'Alles', sparkling: 'Bruisend', orange: 'Oranje', rose: 'Rosé', red: 'Rood', white: 'Wit' },
+    },
+    ageGate: {
+      title: 'Ben je 18 jaar of ouder?',
+      body: 'Je moet de wettelijke leeftijd hebben om onze wijnshop te betreden. In België is dat 18+.',
+      yes: 'Ja, ik ben 18 of ouder',
+      no: 'Nee, breng me terug',
+      responsibly: 'Geniet met mate.',
+    },
+    reviews: {
+      tag: 'Mooie woorden',
+      title: 'Wat mensen zeggen',
+      lead: 'Een paar woorden van vaste klanten en nieuwkomers. (Vervang deze later door je echte Google-reviews.)',
+      items: [
+        {
+          name: 'Lotte D.',
+          rating: 5,
+          text: 'Kwam binnen zonder kennis, ging buiten met drie flessen die ik nu niet meer kan missen. Nul snobisme, alleen warmte.',
+        },
+        {
+          name: 'Karim B.',
+          rating: 5,
+          text: 'Tawat koos een natuurlijke wijn binnen mijn budget en het was geweldig. Mijn vaste shop in Antwerpen nu.',
+        },
+        {
+          name: 'Sofie & Jonas',
+          rating: 5,
+          text: 'Boekten een privéproeverij voor onze verjaardag — relaxed, leuk en echt lekker. Een aanrader.',
+        },
+      ],
+    },
+    visit: {
+      tag: 'Bezoek / Contact',
+      title: 'Kom ons vinden',
+      addressTitle: 'Adres',
+      address: ['Volkstraat 45', '2000 Antwerpen', 'België'],
+      hoursTitle: 'Openingsuren',
+      hours: [
+        { d: 'Ma – Wo', h: 'Gesloten' },
+        { d: 'Do – Zo', h: '14:00 – 19:00' },
+      ],
+      contactTitle: 'Contacteer ons',
+      phoneLabel: 'Telefoon',
+      emailLabel: 'E-mail',
+      instaLabel: 'Instagram',
+      mapTitle: 'Kaart met Celler aan de Volkstraat 45, Antwerpen',
+    },
+    footer: {
+      tagline: 'Buurtwijnshop · Antwerpen',
+      sister: 'Van de mensen achter Tannin.',
+      age: '18+ · Geniet met mate. Alcohol drinken kan je gezondheid schaden — consumeer met mate.',
+      rights: '© 2026 Celler. Gemaakt met liefde en goede flessen.',
+      back: 'Terug naar boven',
+    },
+  },
+}
+
+const LanguageContext = createContext(null)
+
+export function LanguageProvider({ children }) {
+  const [lang, setLang] = useState(() => {
+    if (typeof localStorage !== 'undefined') {
+      const saved = localStorage.getItem('celler-lang')
+      if (saved === 'en' || saved === 'nl') return saved
+    }
+    return 'en'
+  })
+
+  useEffect(() => {
+    if (typeof localStorage !== 'undefined') localStorage.setItem('celler-lang', lang)
+    document.documentElement.lang = lang
+  }, [lang])
+
+  const toggle = useCallback(() => setLang((l) => (l === 'en' ? 'nl' : 'en')), [])
+
+  const value = { lang, setLang, toggle, t: translations[lang] }
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
+}
+
+export function useLang() {
+  const ctx = useContext(LanguageContext)
+  if (!ctx) throw new Error('useLang must be used within LanguageProvider')
+  return ctx
+}
