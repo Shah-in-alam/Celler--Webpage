@@ -103,7 +103,7 @@ export default function ShopModal({ open, onClose }) {
       return `${q}× ${wine.name} (${wine.region}) — ${fmt(wine.price)} = ${fmt(wine.price * q)}`
     })
     lines.push('', `${s.total}: ${fmt(totalPrice)}`)
-    return `mailto:hello@celler.wine?subject=${encodeURIComponent('Wine order — Celler')}&body=${encodeURIComponent(
+    return `mailto:hello@cellar.wine?subject=${encodeURIComponent('Wine order — Cellar')}&body=${encodeURIComponent(
       lines.join('\n'),
     )}`
   }

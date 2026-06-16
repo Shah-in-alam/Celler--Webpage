@@ -1,9 +1,9 @@
 {
-  "name": "celler-wine-shop",
+  "name": "cellar-wine-shop",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Celler — neighbourhood wine shop, Antwerp. Single-page site.",
+  "description": "Cellar — neighbourhood wine shop, Antwerp. Single-page site.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

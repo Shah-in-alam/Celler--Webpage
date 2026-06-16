@@ -1,6 +1,6 @@
-# Celler — Neighbourhood Wine Shop
+# Cellar — Neighbourhood Wine Shop
 
-Single-page website for **Celler**, a neighbourhood wine shop in Antwerp, Belgium.
+Single-page website for **Cellar**, a neighbourhood wine shop in Antwerp, Belgium.
 _Good wine, for everyone._ From the people behind the wine bar Tannin — its own
 brand, its own warm, contemporary identity.
 

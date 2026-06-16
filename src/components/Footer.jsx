@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
-          <span className="footer__logo">Celler</span>
+          <span className="footer__logo">Cellar</span>
           <p className="footer__tagline">{f.tagline}</p>
           <p className="footer__sister">{f.sister}</p>
         </div>

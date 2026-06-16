@@ -119,7 +119,7 @@ export default function BookingModal({ open, onClose }) {
       phone.trim() ? `${b.summary.phone}: ${phone}` : null,
       notes.trim() ? `${b.summary.notes}: ${notes}` : null,
     ].filter(Boolean)
-    return `mailto:hello@celler.wine?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+    return `mailto:hello@cellar.wine?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
       lines.join('\n'),
     )}`
   }

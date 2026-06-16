@@ -8,11 +8,11 @@ export default function AgeGate({ children }) {
   const [verified, setVerified] = useState(false)
 
   useEffect(() => {
-    setVerified(localStorage.getItem('celler-age-verified') === 'true')
+    setVerified(localStorage.getItem('cellar-age-verified') === 'true')
   }, [])
 
   const confirm = () => {
-    localStorage.setItem('celler-age-verified', 'true')
+    localStorage.setItem('cellar-age-verified', 'true')
     setVerified(true)
   }
 
