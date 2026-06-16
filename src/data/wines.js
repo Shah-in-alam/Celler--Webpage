@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// WINE SELECTION / SHOP — placeholder data for Celler
+// WINE SELECTION / SHOP — placeholder data for Cellar
 // Owner: edit this list to update the bottles shown on the site and in the shop.
 //   name, region, grape   — text
 //   type                  — stable key used for shop filters

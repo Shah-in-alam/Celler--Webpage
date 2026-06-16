@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Celler — bilingual copy. English primary, Dutch second. Owner can edit freely.
+// Cellar — bilingual copy. English primary, Dutch second. Owner can edit freely.
 // ─────────────────────────────────────────────────────────────────────────────
 export const translations = {
   en: {
@@ -26,9 +26,9 @@ export const translations = {
     about: {
       tag: 'Our story',
       title: 'Good wine, for everyone',
-      lead: 'Celler comes from Tawat — a Thai sommelier who fell for wine through his father-in-law, then trained and worked his way through hospitality. Same hands, new shop.',
+      lead: 'Cellar comes from Tawat — a Thai sommelier who fell for wine through his father-in-law, then trained and worked his way through hospitality. Same hands, new shop.',
       body1:
-        "Tawat is also the owner of Tannin, the wine bar just around the corner that's been thriving since the day it opened. Celler is its little sister: after years of pouring for guests, he wanted a place where you could simply take the good stuff home — a warm little bottle shop for organic, natural and biodynamic wines from small growers and lesser-known regions.",
+        "Tawat is also the owner of Tannin, the wine bar just around the corner that's been thriving since the day it opened. Cellar is its little sister: after years of pouring for guests, he wanted a place where you could simply take the good stuff home — a warm little bottle shop for organic, natural and biodynamic wines from small growers and lesser-known regions.",
       body2:
         "Never tried natural wine? Perfect. Know your terroir inside out? Also perfect. Tell us what you like and your budget, and we'll hand you something you'll love. Real knowledge, zero snobbery.",
       photoCaption: 'Tawat · founder & sommelier',
@@ -51,7 +51,7 @@ export const translations = {
       title: 'Throw your party here',
       lead: "Birthdays, team nights, tastings or just-because get-togethers — book the shop and we'll take care of the wine.",
       items: [
-        { t: 'Private parties', d: 'Take over Celler for the evening. Your crowd, our bottles, zero stress.' },
+        { t: 'Private parties', d: 'Take over Cellar for the evening. Your crowd, our bottles, zero stress.' },
         { t: 'Guided tastings', d: 'A relaxed trip through natural wine — fun first, jargon never.' },
         { t: 'Team building', d: "Bring the colleagues. We'll pour, you'll bond over something good." },
       ],
@@ -174,13 +174,13 @@ export const translations = {
       phoneLabel: 'Phone',
       emailLabel: 'Email',
       instaLabel: 'Instagram',
-      mapTitle: 'Map showing Celler at Volkstraat 45, Antwerp',
+      mapTitle: 'Map showing Cellar at Volkstraat 45, Antwerp',
     },
     footer: {
       tagline: 'Neighbourhood wine shop · Antwerp',
       sister: 'From the people behind Tannin.',
       age: '18+ · Enjoy responsibly. Drinking alcohol can damage your health — consume in moderation.',
-      rights: '© 2026 Celler. Made with love and good bottles.',
+      rights: '© 2026 Cellar. Made with love and good bottles.',
       back: 'Back to top',
     },
   },
@@ -207,9 +207,9 @@ export const translations = {
     about: {
       tag: 'Ons verhaal',
       title: 'Goede wijn, voor iedereen',
-      lead: 'Celler komt van Tawat — een Thaise sommelier die voor wijn viel dankzij zijn schoonvader, en zich daarna een weg baande door de horeca. Dezelfde handen, een nieuwe shop.',
+      lead: 'Cellar komt van Tawat — een Thaise sommelier die voor wijn viel dankzij zijn schoonvader, en zich daarna een weg baande door de horeca. Dezelfde handen, een nieuwe shop.',
       body1:
-        'Tawat is ook de eigenaar van Tannin, de wijnbar om de hoek die floreert sinds de dag dat ze opende. Celler is het kleine zusje: na jaren schenken voor gasten wilde hij een plek waar je het goede spul gewoon mee naar huis kon nemen — een warme kleine bottelshop voor bio-, natuurlijke en biodynamische wijnen van kleine wijnboeren en minder bekende regio’s.',
+        'Tawat is ook de eigenaar van Tannin, de wijnbar om de hoek die floreert sinds de dag dat ze opende. Cellar is het kleine zusje: na jaren schenken voor gasten wilde hij een plek waar je het goede spul gewoon mee naar huis kon nemen — een warme kleine bottelshop voor bio-, natuurlijke en biodynamische wijnen van kleine wijnboeren en minder bekende regio’s.',
       body2:
         'Nooit natuurlijke wijn geproefd? Perfect. Ken je je terroir door en door? Ook perfect. Vertel ons wat je lekker vindt en je budget, en wij geven je iets waar je van gaat houden. Echte kennis, nul snobisme.',
       photoCaption: 'Tawat · oprichter & sommelier',
@@ -232,7 +232,7 @@ export const translations = {
       title: 'Vier je feest hier',
       lead: 'Verjaardagen, teamavonden, proeverijen of zomaar samenkomen — boek de shop en wij zorgen voor de wijn.',
       items: [
-        { t: 'Privéfeesten', d: 'Neem Celler een avond over. Jouw volk, onze flessen, nul stress.' },
+        { t: 'Privéfeesten', d: 'Neem Cellar een avond over. Jouw volk, onze flessen, nul stress.' },
         { t: 'Begeleide proeverijen', d: 'Een relaxte reis door natuurlijke wijn — eerst plezier, nooit jargon.' },
         { t: 'Teambuilding', d: "Breng de collega's mee. Wij schenken, jullie bonden over iets goeds." },
       ],
@@ -355,13 +355,13 @@ export const translations = {
       phoneLabel: 'Telefoon',
       emailLabel: 'E-mail',
       instaLabel: 'Instagram',
-      mapTitle: 'Kaart met Celler aan de Volkstraat 45, Antwerpen',
+      mapTitle: 'Kaart met Cellar aan de Volkstraat 45, Antwerpen',
     },
     footer: {
       tagline: 'Buurtwijnshop · Antwerpen',
       sister: 'Van de mensen achter Tannin.',
       age: '18+ · Geniet met mate. Alcohol drinken kan je gezondheid schaden — consumeer met mate.',
-      rights: '© 2026 Celler. Gemaakt met liefde en goede flessen.',
+      rights: '© 2026 Cellar. Gemaakt met liefde en goede flessen.',
       back: 'Terug naar boven',
     },
   },
@@ -372,14 +372,14 @@ const LanguageContext = createContext(null)
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(() => {
     if (typeof localStorage !== 'undefined') {
-      const saved = localStorage.getItem('celler-lang')
+      const saved = localStorage.getItem('cellar-lang')
       if (saved === 'en' || saved === 'nl') return saved
     }
     return 'en'
   })
 
   useEffect(() => {
-    if (typeof localStorage !== 'undefined') localStorage.setItem('celler-lang', lang)
+    if (typeof localStorage !== 'undefined') localStorage.setItem('cellar-lang', lang)
     document.documentElement.lang = lang
   }, [lang])
 

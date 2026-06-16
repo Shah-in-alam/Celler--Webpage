@@ -28,7 +28,7 @@ export default function Nav() {
     <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${open ? 'nav--open' : ''}`}>
       <div className="nav__inner container">
         <a href="#top" className="nav__logo" onClick={close}>
-          Celler
+          Cellar
         </a>
 
         <button

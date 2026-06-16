@@ -12,7 +12,7 @@ export default function Hero() {
           {t.hero.kicker}
           <span className="hero__sister"> · {t.hero.sister}</span>
         </p>
-        <h1 className="hero__title">Celler</h1>
+        <h1 className="hero__title">Cellar</h1>
         <p className="hero__promise">{t.hero.promise}</p>
 
         <div className="hero__cta">

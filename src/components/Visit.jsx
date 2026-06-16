@@ -46,12 +46,12 @@ export default function Visit() {
                 </li>
                 <li>
                   <span className="contact__label">{v.emailLabel}</span>
-                  <a href="mailto:hello@celler.wine">hello@celler.wine</a>
+                  <a href="mailto:hello@cellar.wine">hello@cellar.wine</a>
                 </li>
                 <li>
                   <span className="contact__label">{v.instaLabel}</span>
-                  <a href="https://instagram.com/celler.antwerp" target="_blank" rel="noreferrer noopener">
-                    @celler.antwerp
+                  <a href="https://instagram.com/cellar_antwerp" target="_blank" rel="noreferrer noopener">
+                    @cellar_antwerp
                   </a>
                 </li>
               </ul>
