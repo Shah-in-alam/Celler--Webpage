@@ -1,5 +1,7 @@
 # Celler — Neighbourhood Wine Shop
 
+[![CodeQL](https://github.com/Shah-in-alam/Celler--Webpage/actions/workflows/codeql.yml/badge.svg)](https://github.com/Shah-in-alam/Celler--Webpage/actions/workflows/codeql.yml)
+
 Single-page website for **Celler**, a neighbourhood wine shop in Antwerp, Belgium.
 _Good wine, for everyone._ From the people behind the wine bar Tannin — its own
 brand, its own warm, contemporary identity.
@@ -30,6 +32,12 @@ Visit / Contact (address, hours, phone, email, Instagram, map).
   block marked "swap me" is where a real photo goes.
 - **Address / hours / contact** → `src/i18n.jsx` (`visit`) and `src/components/Visit.jsx`
   (phone/email/Instagram links + map URL).
+
+## Code quality
+
+Every push and pull request to `main` is scanned by **[CodeQL](https://codeql.github.com/)**
+(`.github/workflows/codeql.yml`) using the `security-and-quality` query suite.
+Findings show up in the **Security → Code scanning** tab and as checks on each PR.
 
 ## Belgium / legal
 
