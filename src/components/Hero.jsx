@@ -1,9 +1,23 @@
 import { useLang } from '../i18n.jsx'
+import Photo from './Photo.jsx'
 
 export default function Hero() {
   const { t } = useLang()
   return (
     <section id="top" className="hero">
+      {/* Decorative: the headline carries the meaning, so the photo has an empty alt. */}
+      <div className="hero__bg" aria-hidden="true">
+        <Photo
+          name="hero-storefront"
+          alt=""
+          width={2000}
+          height={1333}
+          className="hero__bg-img"
+          loading="eager"
+          priority
+        />
+      </div>
+
       <span className="hero__blob hero__blob--1" aria-hidden="true" />
       <span className="hero__blob hero__blob--2" aria-hidden="true" />
 

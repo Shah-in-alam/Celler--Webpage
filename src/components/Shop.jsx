@@ -5,6 +5,7 @@ import Reveal from './Reveal.jsx'
 import AgeGate from './AgeGate.jsx'
 import Bottle from './Bottle.jsx'
 import ShopModal from './ShopModal.jsx'
+import Photo from './Photo.jsx'
 import { wines } from '../data/wines.js'
 
 const fmt = (n) => `€${Number(n).toFixed(2).replace(/\.00$/, '')}`
@@ -33,6 +34,16 @@ export default function Shop() {
               <p>{s.deliveryD}</p>
             </Reveal>
           </div>
+
+          <Reveal className="shop__media">
+            <Photo
+              name="shop-counter"
+              alt={s.photoAlt}
+              width={1200}
+              height={1500}
+              className="shop__photo"
+            />
+          </Reveal>
 
           <Reveal className="shop__popular">
             <h3 className="shop__popular-title">{s.popular}</h3>

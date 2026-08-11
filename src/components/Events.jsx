@@ -3,6 +3,7 @@ import { useLang } from '../i18n.jsx'
 import SectionHead from './SectionHead.jsx'
 import Reveal from './Reveal.jsx'
 import BookingModal from './BookingModal.jsx'
+import Photo from './Photo.jsx'
 
 export default function Events() {
   const { t } = useLang()
@@ -13,6 +14,16 @@ export default function Events() {
     <section id="events" className="section section--events">
       <div className="container">
         <SectionHead tag={e.tag} title={e.title} lead={e.lead} />
+
+        <Reveal className="events__media">
+          <Photo
+            name="events-tasting"
+            alt={e.photoAlt}
+            width={1200}
+            height={1500}
+            className="events__photo"
+          />
+        </Reveal>
 
         <div className="events-grid">
           {e.items.map((item, i) => (

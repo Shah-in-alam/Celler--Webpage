@@ -1,6 +1,7 @@
 import { useLang } from '../i18n.jsx'
 import SectionHead from './SectionHead.jsx'
 import Reveal from './Reveal.jsx'
+import Photo from './Photo.jsx'
 
 const MAP_SRC =
   'https://www.google.com/maps?q=Volkstraat%2045,%202000%20Antwerpen,%20Belgium&output=embed'
@@ -16,6 +17,14 @@ export default function Visit() {
 
         <div className="visit__grid">
           <Reveal className="visit__info">
+            <Photo
+              name="visit-storefront"
+              alt={v.photoAlt}
+              width={1200}
+              height={1500}
+              className="visit__photo"
+            />
+
             <div className="visit__block">
               <h3>{v.addressTitle}</h3>
               <address>

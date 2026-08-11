@@ -20,18 +20,42 @@ npm run preview    # preview the production build
 
 ## Sections
 
+
+
 Hero · About (Tawat's story + accessible-wine philosophy) · Wine selection ·
-Wine shop (pick up in store or delivered, behind an 18+ age check) ·
+Wine shop (pick up in store or delivered, behind an 18+ age check) · Events ·
+Gallery (shop photos, click to enlarge) · Reviews ·
 Visit / Contact (address, hours, phone, email, Instagram, map).
 
 ## Editing content (no React knowledge needed)
 
 - **Wines** → `src/data/wines.js` — name, region, grape, tasting note (EN/NL), price.
 - **All other text / translations** → `src/i18n.jsx` (English and Dutch side by side).
-- **Photos** → search for `PLACEHOLDER` in `src/components/About.jsx`. The coloured
-  block marked "swap me" is where a real photo goes.
+- **Founder photo** → replace `public/images/founder.jpg`.
+- **Shop photos** → see below.
 - **Address / hours / contact** → `src/i18n.jsx` (`visit`) and `src/components/Visit.jsx`
   (phone/email/Instagram links + map URL).
+
+## Shop photos
+
+Web-ready images live in `public/images/shop/` and are rendered through
+`src/components/Photo.jsx`, which serves WebP with a JPEG fallback.
+
+They are generated from the full-size originals by:
+
+```bash
+pip install Pillow
+python scripts/optimize-images.py
+```
+
+The script bakes in EXIF rotation (the originals are portrait phone photos that
+rely on an orientation flag), crops each slot to a fixed aspect, strips metadata
+— the originals carry GPS — and writes both formats. Point it at a different
+source folder with the `CELLAR_PHOTOS` environment variable, and change which
+photo lands in which slot by editing `FEATURES` / `GALLERY` at the top.
+
+Alt text for every photo is in `src/i18n.jsx` (`gallery.alts`, and `photoAlt`
+under `events` / `shop` / `visit`) in both languages.
 
 ## Code quality
 

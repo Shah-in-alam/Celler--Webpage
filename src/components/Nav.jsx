@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '../i18n.jsx'
 
-const LINKS = ['about', 'wine', 'shop', 'events', 'reviews', 'visit']
+const LINKS = ['about', 'wine', 'shop', 'events', 'gallery', 'reviews', 'visit']
 
 export default function Nav() {
   const { t, lang, toggle } = useLang()

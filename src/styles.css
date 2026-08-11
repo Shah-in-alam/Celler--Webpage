@@ -1722,6 +1722,198 @@ h4 {
   color: var(--amber);
 }
 
+/* ═══ SHOP PHOTOS ═════════════════════════════════════════════════════════
+   Real photos of the shop. Every source frame is portrait 3:4 and lit in
+   saturated neon red, so they are framed as contained "accents" on the paper
+   background rather than allowed to bleed edge to edge.
+   ════════════════════════════════════════════════════════════════════════ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Hero background ──────────────────────────────────────────────────────
+   Sits behind the blobs (z-index -1) and the copy. The scrim keeps the
+   headline readable over a busy, high-contrast neon photo.                */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+.hero__bg picture {
+  display: block;
+  height: 100%;
+}
+.hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 38%;
+}
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(35, 12, 22, 0.62) 0%, rgba(35, 12, 22, 0.34) 45%, rgba(74, 24, 48, 0.86) 100%),
+    linear-gradient(90deg, rgba(74, 24, 48, 0.7) 0%, transparent 55%);
+}
+
+/* ── Framed section photos ────────────────────────────────────────────── */
+.events__photo,
+.shop__photo,
+.visit__photo {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  object-fit: cover;
+  height: auto;
+}
+.events__media {
+  max-width: 620px;
+  margin: 0 auto 3rem;
+}
+.events__photo {
+  aspect-ratio: 16 / 10;
+  object-position: 50% 42%;
+}
+.shop__media {
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+}
+.shop__photo {
+  aspect-ratio: 4 / 3;
+  object-position: 50% 55%;
+}
+.visit__photo {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 2rem;
+  object-position: 50% 50%;
+}
+
+/* ── Gallery grid ─────────────────────────────────────────────────────── */
+.section--gallery {
+  background: var(--paper-2);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.8rem, 1.6vw, 1.2rem);
+}
+.gallery-tile__btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-tile__btn:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.gallery-tile__btn:focus-visible {
+  outline: 3px solid var(--amber-deep);
+  outline-offset: 3px;
+}
+.gallery-tile__img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Lightbox ─────────────────────────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  background: rgba(20, 8, 14, 0.88);
+  backdrop-filter: blur(4px);
+}
+.lightbox__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: min(620px, 100%);
+  max-height: 100%;
+}
+.lightbox__img {
+  min-height: 0;
+  max-height: calc(100vh - 11rem);
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+}
+.lightbox__close {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: var(--shadow-soft);
+}
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+.lightbox__nav {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 250, 242, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cream);
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.lightbox__nav:hover {
+  background: rgba(255, 250, 242, 0.14);
+}
+.lightbox__close:focus-visible,
+.lightbox__nav:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 2px;
+}
+.lightbox__counter {
+  color: var(--cream);
+  font-size: 0.9rem;
+  min-width: 9ch;
+  text-align: center;
+}
+
 /* ═══ RESPONSIVE ══════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .wine-grid,
@@ -1737,6 +1929,12 @@ h4 {
   }
   .about__media {
     max-width: 360px;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .visit__photo {
+    max-width: 420px;
   }
 }
 @media (max-width: 600px) {
@@ -1754,6 +1952,12 @@ h4 {
   }
   .shop-list__price {
     margin-left: auto;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lightbox__img {
+    max-height: calc(100vh - 9rem);
   }
 }
 
